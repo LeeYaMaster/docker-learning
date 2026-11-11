@@ -1,0 +1,12 @@
+# 本目录独立示例的编排：演示资源限制、健康检查（镜像里已声明）和端口映射。
+name: lab08
+
+services:
+  web:
+    build: .
+    container_name: lab08-web
+    ports:
+      - "8080:8000"
+    mem_limit: 256m
+    cpus: "0.50"
+    restart: unless-stopped

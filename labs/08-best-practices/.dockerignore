@@ -1,0 +1,14 @@
+# 不要把说明、答案、仓库元数据和密钥送进构建上下文
+README.md
+answers.md
+.git
+.gitignore
+__pycache__
+*.pyc
+.DS_Store
+.venv
+venv
+.env
+*.log
+docker-compose.yml
+Dockerfile.guestbook

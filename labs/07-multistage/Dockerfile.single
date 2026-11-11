@@ -1,0 +1,22 @@
+# 单阶段：基础镜像较大，构建工具也留在最终镜像里。
+# 这样能跑，但体积偏大，不适合作为最终交付物。
+FROM python:3.12
+
+WORKDIR /app
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1
+
+# 模拟「安装依赖时需要编译器」的常见场景。即使当前 Flask 多为 wheel，
+# gcc 也会被装进最终镜像，白白占用空间。
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY app.py .
+
+EXPOSE 8000
+CMD ["python", "app.py"]

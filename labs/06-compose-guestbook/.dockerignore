@@ -1,0 +1,11 @@
+.git
+.gitignore
+__pycache__
+*.py[cod]
+.env
+.env.*
+!.env.example
+*.md
+.DS_Store
+.venv
+venv

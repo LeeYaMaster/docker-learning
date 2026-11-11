@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>留言板</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <h1>留言板</h1>
+      {% if visits is not none %}
+      <p class="visits">本页已被访问 <strong>{{ visits }}</strong> 次。</p>
+      {% endif %}
+      <p class="lead">留言保存在 MySQL，访问次数记在 Redis。这是 Docker 学习营实验 06 的小应用。</p>
+    </header>
+
+    {% with notices = get_flashed_messages() %}
+      {% if notices %}
+        <ul class="flash">
+          {% for item in notices %}
+            <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    {% if db_error %}
+      <p class="alert">读取留言失败：{{ db_error }}</p>
+    {% endif %}
+    {% if redis_error %}
+      <p class="alert">{{ redis_error }}</p>
+    {% endif %}
+
+    <section class="card">
+      <h2>写一条留言</h2>
+      <form method="post" action="{{ url_for('index') }}">
+        <label>
+          昵称
+          <input type="text" name="author" maxlength="64" required placeholder="怎么称呼你">
+        </label>
+        <label>
+          内容
+          <textarea name="content" maxlength="500" rows="4" required placeholder="说点什么吧，最多 500 个字符"></textarea>
+        </label>
+        <button type="submit">发表</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>全部留言 {% if messages %}（{{ messages|length }}）{% endif %}</h2>
+      {% if messages %}
+        <ol class="messages">
+          {% for msg in messages %}
+            <li>
+              <div class="meta">
+                <span class="author">{{ msg.author }}</span>
+                <time>
+                  {% if msg.created_at and msg.created_at.strftime %}
+                    {{ msg.created_at.strftime("%Y-%m-%d %H:%M") }}
+                  {% else %}
+                    {{ msg.created_at }}
+                  {% endif %}
+                </time>
+              </div>
+              <p class="content">{{ msg.content }}</p>
+            </li>
+          {% endfor %}
+        </ol>
+      {% elif not db_error %}
+        <p class="empty">还没有留言。成为第一条吧。</p>
+      {% endif %}
+    </section>
+  </main>
+</body>
+</html>

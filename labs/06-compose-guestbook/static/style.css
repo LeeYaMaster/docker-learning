@@ -1,0 +1,123 @@
+:root {
+  --bg: #f4f1ec;
+  --card: #fffcf8;
+  --text: #2a2a2a;
+  --muted: #6a6560;
+  --line: #e4ddd4;
+  --accent: #2c6e5f;
+  --accent-hover: #245c50;
+  --alert-bg: #fdecea;
+  --alert-text: #8a2c2c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Source Han Sans SC", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.page {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+.hero h1 {
+  margin: 0 0 0.4rem;
+  font-size: 1.9rem;
+  font-weight: 650;
+}
+
+.visits, .lead {
+  margin: 0.2rem 0;
+  color: var(--muted);
+}
+
+.visits strong { color: var(--accent); }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.25rem 1.3rem 1.4rem;
+  margin-top: 1.1rem;
+}
+
+.card h2 {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.85rem;
+  font-size: 0.92rem;
+}
+
+input, textarea {
+  display: block;
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+  background: #fff;
+}
+
+input:focus, textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+button {
+  border: 0;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  padding: 0.5rem 1.15rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover { background: var(--accent-hover); }
+
+.messages {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.messages li {
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.messages li:first-child { border-top: 0; padding-top: 0; }
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.author { font-weight: 650; }
+time { color: var(--muted); }
+.content { margin: 0.35rem 0 0; white-space: pre-wrap; word-break: break-word; }
+.empty { color: var(--muted); margin: 0; }
+
+.flash, .alert {
+  margin: 1rem 0 0;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: var(--alert-bg);
+  color: var(--alert-text);
+}
+
+.flash { list-style: none; }
+.flash li + li { margin-top: 0.3rem; }

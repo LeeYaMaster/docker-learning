@@ -1,0 +1,11 @@
+README.md
+answers.md
+.git
+.gitignore
+__pycache__
+*.pyc
+.DS_Store
+.venv
+venv
+Dockerfile.single
+Dockerfile.multi

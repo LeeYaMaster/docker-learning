@@ -1,0 +1,22 @@
+# 本地环境与密钥
+.env
+.env.local
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+
+# 日志与编辑器
+*.log
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# 偶尔本地构建产生的杂文件
+.docker/

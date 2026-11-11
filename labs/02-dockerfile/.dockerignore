@@ -1,0 +1,10 @@
+# 构建上下文里不必送进 Docker 守护进程的文件
+README.md
+answers.md
+.git
+.gitignore
+__pycache__
+*.pyc
+.DS_Store
+.venv
+venv
